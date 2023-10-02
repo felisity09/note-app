@@ -9,14 +9,28 @@ import CreateNote from "./CreateNote";
 //   runtime = 'nodejs',
 //   preferredRegion = 'auto'
 
-async function getNotes() {
-  //todo: fetch GET /api/notes
-  //   const data = await res.json();
-  //   return data?.items as any[];
-}
+// async function getNotes() {
+//   //todo: fetch GET /api/notes
+//   const res = await fetch(
+//     "http://127.0.0.1:8090/api/collections/notes/records?page=1&perPage=30",
+//     { cache: "no-store" }
+//   );
+//   const data = await res.json();
+//   return data?.items as any[];
+// }
+
+const notes = [
+  {
+    id: "1",
+    title: "Note 1",
+    content: "Content 1",
+    created: "2021-09-01",
+    update: "2021-09-01",
+  },
+];
 
 export default async function NotesPage() {
-  const notes = await getNotes();
+  // const notes = await getNotes();
 
   return (
     <div>

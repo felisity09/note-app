@@ -1,3 +1,5 @@
-export default function Loading() {
-  return <p>Loading...</p>;
+"use client";
+
+export default function Error() {
+  return <p>error...</p>;
 }

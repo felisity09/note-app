@@ -3,11 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface CreateNoteProps {
-  onSave: (title: string, content: string) => void;
-}
+interface CreateNoteProps {}
 
-const CreateNote: React.FC<CreateNoteProps> = ({ onSave }) => {
+const CreateNote: React.FC<CreateNoteProps> = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
@@ -23,8 +21,8 @@ const CreateNote: React.FC<CreateNoteProps> = ({ onSave }) => {
   };
 
   const handleSaveClick = () => {
-    //todo: fetch POST /api/notes
-    onSave(title, content);
+    //todo: validate title and content
+    //todo: save note
     setTitle("");
     setContent("");
     router.refresh();
