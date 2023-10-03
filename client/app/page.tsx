@@ -1,12 +1,20 @@
-import Image from 'next/image'
+import prisma from "@/lib/prisma";
+import Image from "next/image";
+import Note from "@/components/Note";
 
-export default function Home() {
+export default async function Home() {
+  const notes = await prisma.note.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return (
     <main
     // className="flex min-h-screen flex-col items-center justify-between p-24"
     >
-      <h1>Home Page</h1>
-      <p>Some content</p>
+      {notes?.map((note) => {
+        return <Note key={note.id} note={note} />;
+      })}
     </main>
   );
 }

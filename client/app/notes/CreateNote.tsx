@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import prisma from "@/lib/prisma";
 
 interface CreateNoteProps {}
 
@@ -20,13 +21,28 @@ const CreateNote: React.FC<CreateNoteProps> = () => {
     setContent(event.target.value);
   };
 
-  const handleSaveClick = () => {
-    //todo: validate title and content
-    //todo: save note
-    setTitle("");
-    setContent("");
-    router.refresh();
+  const handleSaveClick = async (e: React.SyntheticEvent) => {
+    // e.preventDefault();
+    try {
+      const res = await fetch("/api/note", {
+        method: "POST",
+        body: JSON.stringify({ title, content }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("res ===>", res);
+      router.push("/");
+      setTitle("");
+      setContent("");
+    } catch (error) {
+      console.log("handleSaveClick error ===>", error);
+      throw new Error(error);
+    }
   };
+
+  //todo: add word count not short than 20 characters and not longer than 300 characters
 
   return (
     <form onSubmit={handleSaveClick}>
@@ -41,7 +57,9 @@ const CreateNote: React.FC<CreateNoteProps> = () => {
       <label htmlFor="content">Content:</label>
       <textarea id="content" value={content} onChange={handleContentChange} />
 
-      <button type="submit">Save</button>
+      <button type="submit" disabled={!content || !title}>
+        Save
+      </button>
     </form>
   );
 };
