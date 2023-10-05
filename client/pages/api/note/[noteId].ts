@@ -1,64 +1,63 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { id } = req.query;
+  console.log("req.query.noteId", req.query.noteId);
+  const noteId = Array.isArray(req.query.noteId)
+    ? req.query.noteId[0]
+    : (req.query.noteId as string);
 
-  if (!id) return res.status(400).end('Missing note "id" query parameter');
-
-  if (Array.isArray(id)) {
-    return res
-      .status(400)
-      .end('Multiple "id" query parameters are not allowed');
+  if (!noteId) {
+    return res.status(400).json({ message: "Note ID not provided" });
   }
 
-  console.log("id ===>", id);
-
-  switch (req.method) {
-    case "GET":
-      return getNote(id, res);
-    case "PUT":
-      return updateNote(id, res, req);
-    case "DELETE":
-      return deleteNote(id, res);
-    default:
-      return res.status(405).end(`Method ${req.method} Not Allowed`);
+  if (req.method === "GET") {
+    await handleGet(noteId, res);
+  } else if (req.method === "PUT") {
+    await handlePut(noteId, req, res);
+  } else if (req.method === "DELETE") {
+    await handleDelete(noteId, res);
+  } else {
+    res.status(405).json({ message: "Method not allowed" });
   }
 }
 
-// GET /api/note/:id
-export async function getNote(id: string, res: NextApiResponse) {
-  const note = await prisma.note.findUnique({
-    where: {
-      id: Number(id),
-    },
+// GET /api/note/:noteId
+async function handleGet(noteId: string, res: NextApiResponse) {
+  // const note = await prisma.note.findUnique({
+  //   where: { id: noteId },
+  // });
+  // return res.json(note);
+  const note = await prisma.note.findFirst({
+    where: { id: noteId },
   });
   return res.json(note);
 }
 
-// PUT /api/note/:id
-async function updateNote(
-  id: string,
-  res: NextApiResponse,
-  req: NextApiRequest
-) {
-  const note = await prisma.note.update({
-    where: {
-      id: Number(id),
-    },
-    data: JSON.parse(req.body),
-  });
-  return res.json(note);
-}
-
-// DELETE /api/note/:id
-async function deleteNote(id: string, res: NextApiResponse) {
+// DELETE /api/note/:noteId
+async function handleDelete(noteId: string, res: NextApiResponse) {
   const note = await prisma.note.delete({
-    where: {
-      id: Number(id),
+    where: { id: noteId },
+  });
+  res.json(note);
+}
+
+// PUT /api/note/:noteId
+async function handlePut(
+  noteId: string,
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { title, content } = req.body;
+
+  const note = await prisma.note.update({
+    where: { id: noteId },
+    data: {
+      title: title,
+      content: content,
     },
   });
   return res.json(note);
