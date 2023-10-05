@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 let prisma: PrismaClient;
 
-declare const global: NodeJS.Global & {
+declare const global: Global & {
   prisma?: PrismaClient;
   [key: string]: any;
 };
