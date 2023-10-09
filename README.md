@@ -37,7 +37,7 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Technology used
-Launguage:
+This project is built with the following technology:
 - [TypeScript](https://www.typescriptlang.org/)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
@@ -53,7 +53,7 @@ Backend & Database:
 Deployment:
 - [Vercel](https://vercel.com/)
 
-    This project is deployed on [Vercel](https://note-app-eight-zeta.vercel.app/).
+    This project is deployed at [the domain](https://note-app-eight-zeta.vercel.app/).
     Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details about deployment.
 
 ## Possible Improvement
