@@ -1,5 +1,7 @@
 # note-app
 
+This is a simple note app that allows user to create, read, update, delete notes and search for notes by title or content. This application is deployed at [the domain](https://note-app-eight-zeta.vercel.app/). This application doesn't require user authentication and all saved notes are open to public. Please use this application with caution.
+
 This is a application build using React and [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started - Local Development run 
@@ -52,12 +54,11 @@ Backend & Database:
 
 Deployment:
 - [Vercel](https://vercel.com/)
-
-    This project is deployed at [the domain](https://note-app-eight-zeta.vercel.app/).
     Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details about deployment.
 
 ## Possible Improvement
-- [ ] Add unit tests for TDD
+- [ ] Add unit and integration tests for TDD
+- [ ] Add user authentication 
 - [ ] Add a `404` page
 - [ ] Add a `500` page
 - [ ] Update note table to have desire data validation againt title and content. Ex: `title` can not have more than 100 characters or contain special characters, etc. 
