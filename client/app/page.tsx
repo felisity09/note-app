@@ -54,11 +54,19 @@ export default function Home() {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
-      <div className={styles.grid}>
-        {searchResults.length > 0
-          ? searchResults.map((note) => <Note key={note.id} note={note} />)
-          : notes.map((note) => <Note key={note.id} note={note} />)}
-      </div>
+      {notes ? (
+        <div className={styles.grid}>
+          {searchQuery === "" ? (
+            notes.map((note) => <Note key={note.id} note={note} />)
+          ) : searchResults.length > 0 ? (
+            searchResults.map((note) => <Note key={note.id} note={note} />)
+          ) : (
+            <div className="text-2xl">No matching note</div>
+          )}
+        </div>
+      ) : (
+        <div className="text-2xl">No notes found</div>
+      )}
     </main>
   );
 }
