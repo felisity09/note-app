@@ -54,7 +54,7 @@ export default function Home() {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
-      {notes ? (
+      {notes.length === 0 ? (
         <div className={styles.grid}>
           {searchQuery === "" ? (
             notes.map((note) => <Note key={note.id} note={note} />)

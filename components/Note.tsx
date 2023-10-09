@@ -13,25 +13,6 @@ export type NoteProps = {
 
 export default function Note({ note }: { note: NoteProps }) {
   const { id, title, content, createdAt, updatedAt } = note;
-  //   try {
-  //     const res = await fetch(`/api/note/${id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ title, content }),
-  //     });
-  //     console.log("res ===>", res);
-  //   } catch (error) {
-  //     console.log("editNote error ===>", error);
-  //     throw new Error(String(error));
-  //   }
-  // };
-
-  // const handleEditClick = (id: string) => {
-  //   editNote && editNote(id);
-  //   router.refresh();
-  // };
 
   return (
     <Link href={`/note/${id}`}>
