@@ -4,23 +4,28 @@ This is a application build using React and [Next.js](https://nextjs.org/) proje
 
 ## Getting Started - Local Development run 
 
-First, run the development server:
+First, connect to the database and generate the Prisma client:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm i -g vercel # install vercel globally if you don't have it
+link vercel
+vercel env pull .env
+
 ```
 
+Then, run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+Note - This project is created with `npm` but you can use `yarn` or `pnpm` to run the project.
 
 ### Branches
 - `main` - This is the main branch. It contains the latest code that is deployed to production.
@@ -66,7 +71,7 @@ Deployment:
 
 
 ## Note
-- This project is created with `yarn` but you can use `npm` or `pnpm` to run the project.
+
 - The search feature are applied to both `title` and `content` of the note.
 - Tailwind is used for styling. However, CSS is not fully implemented yet
 

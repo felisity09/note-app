@@ -41,4 +41,5 @@ next-env.d.ts
 /.vscode
 /.idea
 yarn.lock
-```
+.env
+
