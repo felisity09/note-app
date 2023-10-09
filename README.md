@@ -22,6 +22,11 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+### Branches
+- `main` - This is the main branch. It contains the latest code that is deployed to production.
+Note that this branch is protected and can not be pushed directly to it. You need to create a PR and get it approved before merging to this branch.
+
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -31,16 +36,30 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Technology used
+Frontend:
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind](https://tailwindcss.com/)
 
-This project is deployed on [Vercel](https://note-app-eight-zeta.vercel.app/).
+Backend & Database:
+- [Prisma](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/) hosted by [Vercel] (https://vercel.com/docs/storage/vercel-postgres)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details about deployment.
+Deployment:
+- [Vercel](https://vercel.com/)
+
+    This project is deployed on [Vercel](https://note-app-eight-zeta.vercel.app/).
+    Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details about deployment.
 
 ## Possible Improvement
 - [ ] Add a `404` page
 - [ ] Add a `500` page
 - [ ] Update note table to have desire data validation againt title and content. Ex: `title` can not have more than 100 characters or contain special characters, etc. 
+- [ ] Add a `loading` or `error` state on all pages
+- [ ] Set up different environment for `development`, `staging` and `production`
+
 
 ## Note
 - This project is created with `yarn` but you can use `npm` or `pnpm` to run the project.
