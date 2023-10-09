@@ -1,38 +1,51 @@
-import { useState } from "react";
-import prisma from "@/lib/prisma";
+"use client";
+import { useState, useEffect } from "react";
 import Note from "@/components/Note";
 import styles from "@/styles/Notes.module.css";
 import { NoteProps } from "@/components/Note";
 
-export default async function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function Home() {
   const [searchResults, setSearchResults] = useState<NoteProps[]>(
     [] as NoteProps[]
   );
-  const notes = await prisma.note.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [notes, setNotes] = useState<NoteProps[]>([]);
+
+  async function fetchAllNotes() {
+    const res = await fetch("/api");
+    const notes = await res.json();
+    setNotes(notes);
+  }
 
   async function handleSearch() {
-    const results = await prisma.note.findMany({
-      where: {
-        OR: [
-          { title: { contains: searchQuery, mode: "insensitive" } },
-          { content: { contains: searchQuery, mode: "insensitive" } },
-        ],
+    const data = await fetch("/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      body: JSON.stringify({ searchQuery }),
     });
+    const results = await data.json();
     setSearchResults(results);
   }
 
+  useEffect(() => {
+    async function handleEffect() {
+      if (searchQuery === "") {
+        setSearchResults([]);
+        await fetchAllNotes();
+      } else {
+        await handleSearch();
+      }
+    }
+    handleEffect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-row items-center">
         <input
           type="text"
           placeholder="Search notes"
