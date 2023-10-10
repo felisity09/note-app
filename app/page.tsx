@@ -15,6 +15,8 @@ export default function Home() {
   async function fetchAllNotes() {
     const res = await fetch("/api");
     const notes = await res.json();
+    console.log(notes);
+
     setNotes(notes);
   }
 
@@ -54,7 +56,7 @@ export default function Home() {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
-      {notes.length === 0 ? (
+      {notes.length !== 0 ? (
         <div className={styles.grid}>
           {searchQuery === "" ? (
             notes.map((note) => <Note key={note.id} note={note} />)
@@ -65,7 +67,9 @@ export default function Home() {
           )}
         </div>
       ) : (
-        <div className="text-2xl">No notes found</div>
+        <div className="text-2xl">
+          Note note. Click on Add Note to create note
+        </div>
       )}
     </main>
   );
