@@ -25,9 +25,6 @@ export default function Notes({ notes }: any) {
       }
 
       if (content.length < 20 || content.length > 300) {
-        alert(
-          "Content must be at least 20 characters and no longer than 300 characters."
-        );
         return alert(
           "Content must be at least 20 characters and no longer than 300 characters."
         );
