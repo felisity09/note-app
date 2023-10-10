@@ -4,16 +4,7 @@ This is a application build using React and [Next.js](https://nextjs.org/) proje
 
 ## Getting Started - Local Development run 
 
-First, connect to the database and generate the Prisma client:
-
-```bash
-pnpm i -g vercel # install vercel globally if you don't have it
-link vercel
-vercel env pull .env # check .env file for the database connection string
-
-```
-
-Then, run the development server:
+Run the development server:
 
 ```bash
 npm install
