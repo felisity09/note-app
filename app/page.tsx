@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Note from "@/components/Note";
 import styles from "@/styles/Notes.module.css";
 import { NoteProps } from "@/components/Note";
+import Link from "next/link";
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState<NoteProps[]>(
@@ -47,7 +48,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-row items-center">
+      <div className={styles.search}>
         <input
           type="text"
           placeholder="Search notes"
@@ -68,7 +69,19 @@ export default function Home() {
         </div>
       ) : (
         <div className="text-2xl">
-          Note note. Click on Add Note to create note
+          No note. Click on
+          <Link
+            href="/create"
+            style={{
+              color: "blue",
+              textDecoration: "underline",
+              fontStyle: "italic",
+              margin: "0.25rem",
+            }}
+          >
+            Add Note
+          </Link>
+          to create note
         </div>
       )}
     </main>

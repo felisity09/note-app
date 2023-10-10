@@ -4,15 +4,15 @@ This is a application build using React and [Next.js](https://nextjs.org/) proje
 
 ## Getting Started - Local Development run 
 
-Run the development server:
+- Clone the repository:
+- Download .env file and put it in the root folder of the project. This file contains the environment variables for the project. You can get the file from the project owner.
+- Run the development server:
 
-```bash
-npm install
-npx prisma generate # generate prisma client
-npm run dev
-```
-
-
+        ```bash
+        npm install
+        npx prisma generate # generate prisma client
+        npm run dev
+        ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.

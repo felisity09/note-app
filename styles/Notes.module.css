@@ -64,3 +64,14 @@
     text-align: left;
     color: dodgerblue;
   }
+
+  .search {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-self: start;
+    align-items: center;
+    gap: 0.5rem;
+  }
