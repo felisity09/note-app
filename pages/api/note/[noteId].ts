@@ -27,10 +27,6 @@ export default async function handle(
 
 // GET /api/note/:noteId
 async function handleGet(noteId: string, res: NextApiResponse) {
-  // const note = await prisma.note.findUnique({
-  //   where: { id: noteId },
-  // });
-  // return res.json(note);
   const note = await prisma.note.findFirst({
     where: { id: noteId },
   });
